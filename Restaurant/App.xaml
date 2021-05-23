@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Restaurant"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="/resource/resources.xaml"></ResourceDictionary>
     </Application.Resources>
 </Application>

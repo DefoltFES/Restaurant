@@ -2,8 +2,24 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <PathGeometry x:Key="Eye"
                   Figures="M12 5C7 5 2.73 8.11 1 12.5C2.73 16.89 7 20 12 20C17 20 21.27 16.89 23 12.5C21.27 8.11 17 5 12 5ZM12 17.5C9.24 17.5 7 15.26 7 12.5C7 9.74 9.24 7.5 12 7.5C14.76 7.5 17 9.74 17 12.5C17 15.26 14.76 17.5 12 17.5ZM12 9.5C10.34 9.5 9 10.84 9 12.5C9 14.16 10.34 15.5 12 15.5C13.66 15.5 15 14.16 15 12.5C15 10.84 13.66 9.5 12 9.5Z" />
-    <FontFamily x:Key="SemiBold">Fonts/#Roboto Bold</FontFamily>
+
+    <FontFamily x:Key="Bold">Fonts/#Roboto Bold</FontFamily>
     <FontFamily x:Key="Medium">Fonts/#Roboto Medium</FontFamily>
     <FontFamily x:Key="Regular">Fonts/#Roboto Regular</FontFamily>
+    <SolidColorBrush x:Key="ButtonOutline" Opacity="0.12" Color="#000000"></SolidColorBrush>
+    <SolidColorBrush x:Key="TextPlaceHolder" Opacity="0.6" Color="#000000"></SolidColorBrush>
+    <SolidColorBrush x:Key="ErrorButtonText" Opacity="0.6" Color="#ff0000"></SolidColorBrush>
+    <SolidColorBrush x:Key="ErrorButtonOutline" Opacity="0.6" Color="#EC4848"></SolidColorBrush>
+    <SolidColorBrush x:Key="SecondColor" Color="#4BB9F8"></SolidColorBrush>
+    <SolidColorBrush x:Key="ContentText" Color="#212121"></SolidColorBrush>
+    <SolidColorBrush x:Key="AccentColor" Color="#007CC2"></SolidColorBrush>
+    <SolidColorBrush x:Key="SubSecondColor" Color="#0f9ceb" Opacity="0.63"></SolidColorBrush>
+    <SolidColorBrush x:Key="DataIsCorrect" Color="#19A964"></SolidColorBrush>
+    <SolidColorBrush x:Key="PasswordVisible" Color="#208c7f" Opacity="0.72"></SolidColorBrush>
+    <PathGeometry x:Key="BackRegisterButton" Figures="M31.5 0L0 31.5L31.5 63L38.9025 55.5975L14.8575 31.5L38.9025 7.4025L31.5 0Z"></PathGeometry>
+    <PathGeometry x:Key="RadioButtonChecked" Figures="M14.9999 0.833374C7.17992 0.833374 0.833252 7.18004 0.833252 15C0.833252 22.82 7.17992 29.1667 14.9999 29.1667C22.8199 29.1667 29.1666 22.82 29.1666 15C29.1666 7.18004 22.8199 0.833374 14.9999 0.833374ZM14.9999 26.3334C8.73825 26.3334 3.66659 21.2617 3.66659 15C3.66659 8.73837 8.73825 3.66671 14.9999 3.66671C21.2616 3.66671 26.3333 8.73837 26.3333 15C26.3333 21.2617 21.2616 26.3334 14.9999 26.3334ZM14.9999 22.0834C18.9119 22.0834 22.0833 18.9121 22.0833 15C22.0833 11.088 18.9119 7.91671 14.9999 7.91671C11.0879 7.91671 7.91658 11.088 7.91658 15C7.91658 18.9121 11.0879 22.0834 14.9999 22.0834Z"></PathGeometry>
+    <PathGeometry x:Key="RadioButtonNotChecked"  Figures="M14.9999 0.833374C7.17992 0.833374 0.833252 7.18004 0.833252 15C0.833252 22.82 7.17992 29.1667 14.9999 29.1667C22.8199 29.1667 29.1666 22.82 29.1666 15C29.1666 7.18004 22.8199 0.833374 14.9999 0.833374ZM14.9999 26.3334C8.73824 26.3334 3.66658 21.2617 3.66658 15C3.66658 8.73837 8.73824 3.66671 14.9999 3.66671C21.2616 3.66671 26.3332 8.73837 26.3332 15C26.3332 21.2617 21.2616 26.3334 14.9999 26.3334Z"></PathGeometry>
+    <PathGeometry x:Key="CheckBoxUnchecked" Figures="M26.6668 3.33328V26.6666H3.33344V3.33328H26.6668ZM26.6667 0H3.33333C1.5 0 0 1.5 0 3.33333V26.6667C0 28.5 1.5 30 3.33333 30H26.6667C28.5 30 30 28.5 30 26.6667V3.33333C30 1.5 28.5 0 26.6667 0Z"></PathGeometry>
+    <PathGeometry x:Key="CheckBoxChecked" Figures="M26.6667 0H3.33333C1.48333 0 0 1.5 0 3.33333V26.6667C0 28.5 1.48333 30 3.33333 30H26.6667C28.5167 30 30 28.5 30 26.6667V3.33333C30 1.5 28.5167 0 26.6667 0ZM11.6667 23.3333L3.33333 14.9999L5.68333 12.6499L11.6667 18.6166L24.3167 5.96659L26.6667 8.33326L11.6667 23.3333Z"></PathGeometry>
 
 </ResourceDictionary>

@@ -4,15 +4,62 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Restaurant.Views"
+      xmlns:rule="clr-namespace:Restaurant.service"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1024" d:DesignWidth="1440"
       Title="LoginPage">
 
-    <Grid>
+   <ScrollViewer>
         <StackPanel>
-            <DockPanel>
-
+        <StackPanel   Width="495" Margin="20,120" VerticalAlignment="Center" HorizontalAlignment="Left"   >
+            <DockPanel HorizontalAlignment="Stretch"    >
+                <TextBlock  DockPanel.Dock="Left" FontSize="64" FontFamily="{StaticResource Bold}">Вход</TextBlock>
+                <Border HorizontalAlignment="Right" VerticalAlignment="Center" Width="188" Height="44" CornerRadius="4" DockPanel.Dock="Right" BorderThickness="1.5" BorderBrush="{StaticResource SubSecondColor}">
+                        <Button Click="Register_Navigate"  BorderBrush="Transparent" Padding="0" Background="Transparent" >
+                        <TextBlock Text="РЕГИСТРАЦИЯ" FontSize="17"  Foreground="{StaticResource SubSecondColor}" FontFamily="{StaticResource Medium}"></TextBlock>
+                        </Button>
+                </Border>
+                   
             </DockPanel>
-        </StackPanel>
-    </Grid>
+
+            <Border Height="85" x:Name="BorderPhone" Margin="0,50,0,0" Padding="22,0,0,0" BorderThickness="1"  BorderBrush="{StaticResource ButtonOutline}" CornerRadius="3.5">
+                    <TextBox Validation.Error="PhoneNumber_Error"   TextChanged="PhoneNumberTextChanged"   GotFocus="TextBoxOnGotFocus" Background="Transparent" FontFamily="{StaticResource Regular}" VerticalAlignment="Center" BorderThickness="0" FontSize="28" Foreground="{StaticResource TextPlaceHolder}">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate></ControlTemplate>
+                        </Validation.ErrorTemplate>
+                        <TextBox.Text>
+                            <Binding Path="PhoneNumber" TargetNullValue="Номер телефона"  UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                    <rule:PhoneNumberRule></rule:PhoneNumberRule>
+                                        <ExceptionValidationRule/>
+                                    </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+            </Border>
+                <TextBlock Visibility="Hidden" x:Name="ErrorPhone"  Margin="13,10,0,0" FontFamily="{StaticResource Regular}" FontSize="16" Foreground="{StaticResource ErrorButtonText}"></TextBlock>
+                <Border Height="85" Margin="0,24,0,0" Padding="22,0,11,0" BorderThickness="1"  BorderBrush="#DADADA" CornerRadius="3.5">
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                        <TextBox   x:Name="PasswordText" HorizontalAlignment="Stretch" DockPanel.Dock="Left"  GotFocus="Password_OnGotFocus" Background="Transparent" FontFamily="{StaticResource Regular}" VerticalAlignment="Center" BorderThickness="0" FontSize="28" Foreground="{StaticResource TextPlaceHolder}"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">Пароль</TextBox>
+                        <PasswordBox Height="34"  Width="{Binding ElementName=PasswordText,Path=Width}"  x:Name="PasswordBox"  HorizontalAlignment="Stretch"   DockPanel.Dock="Left" Background="Transparent" FontFamily="{StaticResource Regular}"   BorderThickness="0" FontSize="28" Foreground="{StaticResource TextPlaceHolder}" Visibility="Collapsed" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" ></PasswordBox>
+                        <Path x:Name="Eye" VerticalAlignment="Center" DockPanel.Dock="Right" MouseUp="PasswordVisible_MouseUp" HorizontalAlignment="Right" MouseDown="PasswordVisible_MouseDown" Fill="{StaticResource TextPlaceHolder}" Data="{StaticResource Eye}" Grid.Column="2"></Path>
+                    </Grid>
+                </Border>
+                <StackPanel Margin="0,27,0,0">
+                    <TextBlock Visibility="Hidden" x:Name="ErrorLogin"  Margin="0,0,0,7" FontFamily="{StaticResource Regular}" FontSize="16" Foreground="{StaticResource ErrorButtonText}">Номер или пароль введен неверно</TextBlock>
+                    <Border Height="58" Background="{StaticResource DataIsCorrect}" CornerRadius="4">
+                    <Button  BorderBrush="Transparent" Background="Transparent">
+                    <TextBlock FontSize="18" Foreground="White" FontFamily="{StaticResource Medium}">ВОЙТИ</TextBlock>
+                </Button>
+            </Border>
+                </StackPanel>
+
+            </StackPanel>
+    </StackPanel>
+   </ScrollViewer>
 </Page>

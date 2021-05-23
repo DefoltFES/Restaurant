@@ -12,24 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Restaurant.ViewModel;
-using Restaurant.Views;
 
-namespace Restaurant
+namespace Restaurant.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for RegistrationPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RegistrationPage : Page
     {
-        public MainWindow()
+        public RegistrationPage()
         {
             InitializeComponent();
+            RegisterFrame.Content=new ChooseRegisterPage();
         }
 
-        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+
+        private void GoBack(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new LoginPage(new LoginViewModel());
+            this.NavigationService.GoBack();
         }
     }
 }
