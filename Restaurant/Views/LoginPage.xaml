@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Restaurant.Views"
       xmlns:rule="clr-namespace:Restaurant.service"
       mc:Ignorable="d" 
-      d:DesignHeight="1024" d:DesignWidth="1440"
+      d:DesignHeight="1024" d:DesignWidth="1440" Loaded="LoginPage_OnLoaded"
       Title="LoginPage">
 
    <ScrollViewer>
@@ -45,15 +45,16 @@
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                        <TextBox   x:Name="PasswordText" HorizontalAlignment="Stretch" DockPanel.Dock="Left"  GotFocus="Password_OnGotFocus" Background="Transparent" FontFamily="{StaticResource Regular}" VerticalAlignment="Center" BorderThickness="0" FontSize="28" Foreground="{StaticResource TextPlaceHolder}"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">Пароль</TextBox>
+                        <TextBox  x:Name="PasswordText" HorizontalAlignment="Stretch" DockPanel.Dock="Left"  GotFocus="Password_OnGotFocus" Background="Transparent" FontFamily="{StaticResource Regular}" VerticalAlignment="Center" BorderThickness="0" FontSize="28" Foreground="{StaticResource TextPlaceHolder}"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">Пароль</TextBox>
                         <PasswordBox Height="34"  Width="{Binding ElementName=PasswordText,Path=Width}"  x:Name="PasswordBox"  HorizontalAlignment="Stretch"   DockPanel.Dock="Left" Background="Transparent" FontFamily="{StaticResource Regular}"   BorderThickness="0" FontSize="28" Foreground="{StaticResource TextPlaceHolder}" Visibility="Collapsed" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" ></PasswordBox>
                         <Path x:Name="Eye" VerticalAlignment="Center" DockPanel.Dock="Right" MouseUp="PasswordVisible_MouseUp" HorizontalAlignment="Right" MouseDown="PasswordVisible_MouseDown" Fill="{StaticResource TextPlaceHolder}" Data="{StaticResource Eye}" Grid.Column="2"></Path>
                     </Grid>
                 </Border>
+
                 <StackPanel Margin="0,27,0,0">
                     <TextBlock Visibility="Hidden" x:Name="ErrorLogin"  Margin="0,0,0,7" FontFamily="{StaticResource Regular}" FontSize="16" Foreground="{StaticResource ErrorButtonText}">Номер или пароль введен неверно</TextBlock>
-                    <Border Height="58" Background="{StaticResource DataIsCorrect}" CornerRadius="4">
-                    <Button  BorderBrush="Transparent" Background="Transparent">
+                    <Border x:Name="LoginBorder" Height="58" Background="{StaticResource DataIsCorrect}" CornerRadius="4">
+                    <Button Click="LoginClick" BorderBrush="Transparent" Background="Transparent">
                     <TextBlock FontSize="18" Foreground="White" FontFamily="{StaticResource Medium}">ВОЙТИ</TextBlock>
                 </Button>
             </Border>

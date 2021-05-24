@@ -35,17 +35,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\Shared\Packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\Shared\Packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,10 +67,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="booking.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="image.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="kitchen.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="restaurant.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RestaurantModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RestaurantModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RestaurantModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RestaurantModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="role.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="searchTerm.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="service\FieldRule.cs" />
     <Compile Include="service\PasswordRule.cs" />
     <Compile Include="service\PhoneNumberRule.cs" />
     <Compile Include="service\RegistrationFormRule.cs" />
+    <Compile Include="user.cs">
+      <DependentUpon>RestaurantModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\RegistrationFormViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -82,6 +121,9 @@
     </Compile>
     <Compile Include="Views\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -115,6 +157,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -139,6 +185,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <EntityDeploy Include="RestaurantModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RestaurantModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="RestaurantModel.edmx.diagram">
+      <DependentUpon>RestaurantModel.edmx</DependentUpon>
+    </None>
     <Resource Include="resource\Fonts\Roboto-Medium.ttf" />
     <Resource Include="resource\Fonts\Roboto-Regular.ttf" />
     <Resource Include="resource\Fonts\Roboto-Bold.ttf" />
@@ -146,6 +199,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RestaurantModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestaurantModel.edmx</DependentUpon>
+      <LastGenOutput>RestaurantModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="RestaurantModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RestaurantModel.edmx</DependentUpon>
+      <LastGenOutput>RestaurantModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

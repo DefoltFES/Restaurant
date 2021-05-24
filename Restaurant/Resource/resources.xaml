@@ -9,6 +9,7 @@
     <SolidColorBrush x:Key="ButtonOutline" Opacity="0.12" Color="#000000"></SolidColorBrush>
     <SolidColorBrush x:Key="TextPlaceHolder" Opacity="0.6" Color="#000000"></SolidColorBrush>
     <SolidColorBrush x:Key="ErrorButtonText" Opacity="0.6" Color="#ff0000"></SolidColorBrush>
+    <SolidColorBrush x:Key="ErrorButtonColor" Color="#F54242"></SolidColorBrush>
     <SolidColorBrush x:Key="ErrorButtonOutline" Opacity="0.6" Color="#EC4848"></SolidColorBrush>
     <SolidColorBrush x:Key="SecondColor" Color="#4BB9F8"></SolidColorBrush>
     <SolidColorBrush x:Key="ContentText" Color="#212121"></SolidColorBrush>

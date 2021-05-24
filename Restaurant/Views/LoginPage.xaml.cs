@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -23,10 +24,12 @@ namespace Restaurant.Views
     /// </summary>
     public partial class LoginPage : Page
     {
+        private LoginViewModel Context { get; set; }
         public LoginPage(LoginViewModel loginViewModel)
         {
             InitializeComponent();
-            DataContext = loginViewModel;
+            Context = loginViewModel;
+            DataContext = Context;
         }
 
         private void TextBoxOnGotFocus(object sender, RoutedEventArgs e)
@@ -88,15 +91,39 @@ namespace Restaurant.Views
                 BorderPhone.BorderBrush = (SolidColorBrush)TryFindResource("ButtonOutline");
             }
 
-
-
-
-
         }
 
         private void ButtonLogin_Error(object sender, ValidationErrorEventArgs e)
         {
             
+        }
+
+
+        private void LoginPage_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void LoginClick(object sender, RoutedEventArgs e)
+        {
+            if (!Validation.GetHasError(ErrorPhone))
+            {
+                Context.Password = PasswordBox.Password;
+                if (Context.isExist())
+                {
+                    Context.WriteLog();
+                    this.NavigationService.Navigate(new TestPage());
+                }
+                else
+                {
+                    LoginBorder.Background = (SolidColorBrush) TryFindResource("ErrorButtonColor");
+                    ErrorLogin.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                ErrorPhone.Focus();
+            }
         }
     }
 }
