@@ -53,20 +53,27 @@ namespace Restaurant.ViewModel
         {
             var fullDirectoryPath = System.AppDomain.CurrentDomain.BaseDirectory + @"logs";
             var fullFilePath = fullDirectoryPath + @"\history.txt";
-            using (StreamReader streamReader=new StreamReader(new FileStream(fullFilePath,FileMode.Open)))
+            if (File.Exists(fullFilePath))
             {
-              var lastLogin= streamReader.ReadToEnd().Split(' ');
-              DateTime dateLastLogin = DateTime.Parse(lastLogin[1]);
-              var razniza = (App.TodayDate - dateLastLogin).TotalDays;
-              if (razniza <= 7)
-              {
-                  return true;
-              }
-              else
-              {
-                  return false;
-              }
+                using (StreamReader streamReader = new StreamReader(new FileStream(fullFilePath, FileMode.Open)))
+                {
+                    var lastLogin = streamReader.ReadToEnd().Split(' ');
+                    var user = App.dbContext.users.Find(Convert.ToInt32(lastLogin[0]));
+                    if (user.role.id_role == 1)
+                    {
+                        DateTime dateLastLogin = DateTime.Parse(lastLogin[2]);
+                        var razniza = (App.TodayDate - dateLastLogin).TotalDays;
+                        if (razniza <= 7)
+                        {
+                            Password = user.password;
+                            PhoneNumber = user.phone;
+                            return true;
+                        }
+                    }
+                }
             }
+
+            return false;
         }
 
 

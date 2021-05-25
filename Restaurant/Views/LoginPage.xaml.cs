@@ -93,15 +93,14 @@ namespace Restaurant.Views
 
         }
 
-        private void ButtonLogin_Error(object sender, ValidationErrorEventArgs e)
-        {
-            
-        }
-
 
         private void LoginPage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            
+            if (Context.AutoLogin())
+            {
+                this.NavigationService.Navigate(new TestPage());
+            }
+             
         }
 
         private void LoginClick(object sender, RoutedEventArgs e)
