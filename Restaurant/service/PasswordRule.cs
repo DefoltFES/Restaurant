@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace Restaurant.service
+namespace RestaurantApp.service
 {
     class PasswordRule:ValidationRule
     {

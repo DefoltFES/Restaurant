@@ -12,20 +12,20 @@ namespace Restaurant
     using System;
     using System.Collections.Generic;
     
-    public partial class booking
+    public partial class Booking
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public booking()
+        public Booking()
         {
-            this.users = new HashSet<user>();
+            this.Users = new HashSet<User>();
         }
     
-        public int id_booking { get; set; }
-        public Nullable<int> id_restaurant { get; set; }
-        public Nullable<int> num_persons { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
+        public int IdBooking { get; set; }
+        public Nullable<int> IdRestaurant { get; set; }
+        public Nullable<int> NumPersons { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

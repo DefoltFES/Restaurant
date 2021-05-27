@@ -15,18 +15,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Restaurant.ViewModel;
+using Restaurant.Views;
+using RestaurantApp.ViewModel;
 
-namespace Restaurant.Views
+namespace RestaurantApp.Views
 {
     /// <summary>
     /// Interaction logic for RegisterFormPage.xaml
     /// </summary>
     public partial class RegisterFormPage : Page
     {
+        private RegistrationFormViewModel Context { get; set; }
         public RegisterFormPage(RegistrationFormViewModel model)
         {
             InitializeComponent();
-            DataContext = model;
+            Context = model;
+            DataContext = Context;
         }
 
         private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
@@ -49,29 +53,21 @@ namespace Restaurant.Views
 
         private void CheckGenerationPassword_OnChecked(object sender, RoutedEventArgs e)
         {
-            CheckBoxPassword.Data = (PathGeometry) TryFindResource("CheckBoxChecked");
-            Random rnd = new Random();
-            int length = rnd.Next(8, 12);
-            const string ValidChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@$!%*?&.";
-            StringBuilder result = new StringBuilder();
-            Random randomChar = new Random();
-            while (0 < length--)
-            {
-                result.Append(ValidChar[randomChar.Next(ValidChar.Length)]);
-            }
 
-            PasswordBox.Text = result.ToString();
+            CheckBoxPassword.Data = (PathGeometry)TryFindResource("CheckBoxChecked");
+            PasswordBox.Focus();
+            Context.GeneratePassword();
         }
 
         private void CheckGenerationPassword_OnUnchecked(object sender, RoutedEventArgs e)
         {
-           
             CheckBoxPassword.Data = (PathGeometry)TryFindResource("CheckBoxUnchecked");
          
         }
 
         private void CheckPrivacy_OnChecked(object sender, RoutedEventArgs e)
         {
+            
             Privacy.Data = (PathGeometry)TryFindResource("CheckBoxChecked");
            
         }
@@ -79,8 +75,8 @@ namespace Restaurant.Views
         private void CheckPrivacy_OnUnchecked(object sender, RoutedEventArgs e)
         {
             Privacy.Data = (PathGeometry)TryFindResource("CheckBoxUnchecked");
-            
         }
+
         private void TextBoxOnGotFocus(object sender, RoutedEventArgs e)
         {
             var x = sender as TextBox;
@@ -101,26 +97,7 @@ namespace Restaurant.Views
 
         
 
-        private void Password_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            string input = (sender as TextBox).Text;
-            if (!Regex.IsMatch(input, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&.]{1,}") && input != "")
-            {
-                if (ErrorPassword is null)
-                {
-                    return;
-                }
-                ErrorPassword.Visibility = Visibility.Visible;
-                BorderPassword.BorderBrush = (SolidColorBrush)TryFindResource("ErrorButtonOutline");
-            }
-            else
-            {
-                BorderPassword.BorderBrush = (SolidColorBrush)TryFindResource("ButtonOutline");
-                ErrorPassword.Visibility = Visibility.Hidden;
-
-            }
-        }
-
+      
 
         private void Phone_OnError(object sender, ValidationErrorEventArgs e)
         {
@@ -167,9 +144,33 @@ namespace Restaurant.Views
             }
         }
 
-        private void ConfirmRegistration_OnError(object sender, ValidationErrorEventArgs e)
+
+        private void CreateUser_OnClick(object sender, RoutedEventArgs e)
         {
-           
+            PasswordBox.Focus();
+            Phone.Focus();
+            Name.Focus();
+            if (CheckPrivacy.IsChecked == false)
+            {
+                    Privacy.Fill = (SolidColorBrush)TryFindResource("ErrorButtonText");
+                    return;
+            }
+            if (!Validation.GetHasError(PasswordBox) & !Validation.GetHasError(Phone) & !Validation.GetHasError(Name))
+            {
+                if (Context.CheckPhone())
+                {
+                    Context.CreateUser();
+                    (App.Current.MainWindow as MainWindow).MainFrame.Content=new SuccessRegistrationPage(new SuccessRegistrationViewModel(Context.User));
+
+                }
+                else
+                {
+                    ErrorPhone.Visibility = Visibility.Visible;
+                    BorderPhone.BorderBrush = (SolidColorBrush)TryFindResource("ButtonOutline");
+                    ErrorPhone.Text = "Аккаунт с таким номером телефона существует";
+                }
+
+            }
         }
     }
 }

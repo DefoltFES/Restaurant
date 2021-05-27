@@ -1,10 +1,10 @@
-﻿<Page x:Class="Restaurant.Views.LoginPage"
+﻿<Page x:Class="RestaurantApp.Views.LoginPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Restaurant.Views"
-      xmlns:rule="clr-namespace:Restaurant.service"
+      xmlns:local="clr-namespace:RestaurantApp.Views"
+      xmlns:rule="clr-namespace:RestaurantApp.service"
       mc:Ignorable="d" 
       d:DesignHeight="1024" d:DesignWidth="1440" Loaded="LoginPage_OnLoaded"
       Title="LoginPage">

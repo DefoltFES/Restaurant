@@ -12,25 +12,25 @@ namespace Restaurant
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public user()
+        public User()
         {
-            this.bookings = new HashSet<booking>();
-            this.restaurants = new HashSet<restaurant>();
+            this.Bookings = new HashSet<Booking>();
+            this.Restaurants = new HashSet<Restaurant>();
         }
     
-        public int id_user { get; set; }
-        public string name { get; set; }
-        public string phone { get; set; }
-        public string password { get; set; }
-        public int id_role { get; set; }
+        public int IdUser { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public string Password { get; set; }
+        public int IdRole { get; set; }
     
-        public virtual role role { get; set; }
+        public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<booking> bookings { get; set; }
+        public virtual ICollection<Booking> Bookings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<restaurant> restaurants { get; set; }
+        public virtual ICollection<Restaurant> Restaurants { get; set; }
     }
 }

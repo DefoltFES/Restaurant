@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RestaurantDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="prac32114Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bookings">
           <Key>
             <PropertyRef Name="id_booking" />
           </Key>
-          <Property Name="id_booking" Type="int" Nullable="false" />
+          <Property Name="id_booking" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_restaurant" Type="int" />
           <Property Name="num_persons" Type="int" />
           <Property Name="date" Type="smalldatetime" />
@@ -18,22 +18,22 @@
           <Key>
             <PropertyRef Name="id_image" />
           </Key>
-          <Property Name="id_image" Type="int" Nullable="false" />
-          <Property Name="image" Type="varbinary(max)" />
+          <Property Name="id_image" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image" Type="varchar(max)" />
           <Property Name="id_restaurant" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="kitchens">
           <Key>
             <PropertyRef Name="id_kitchen" />
           </Key>
-          <Property Name="id_kitchen" Type="int" Nullable="false" />
+          <Property Name="id_kitchen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="restaurants">
           <Key>
             <PropertyRef Name="id_restaurant" />
           </Key>
-          <Property Name="id_restaurant" Type="int" Nullable="false" />
+          <Property Name="id_restaurant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="120" />
           <Property Name="description" Type="text" />
           <Property Name="address" Type="text" />
@@ -70,7 +70,7 @@
           <Key>
             <PropertyRef Name="id_user" />
           </Key>
-          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="150" />
           <Property Name="phone" Type="varchar" MaxLength="13" />
           <Property Name="password" Type="varchar" MaxLength="100" />
@@ -200,7 +200,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="RestaurantDataModelStoreContainer">
+        <EntityContainer Name="prac32114ModelStoreContainer">
           <EntitySet Name="bookings" EntityType="Self.bookings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="images" EntityType="Self.images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="kitchens" EntityType="Self.kitchens" Schema="dbo" store:Type="Tables" />
@@ -252,161 +252,161 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="RestaurantDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="booking">
+      <Schema Namespace="prac32114Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Booking">
           <Key>
-            <PropertyRef Name="id_booking" />
+            <PropertyRef Name="IdBooking" />
           </Key>
-          <Property Name="id_booking" Type="Int32" Nullable="false" />
-          <Property Name="id_restaurant" Type="Int32" />
-          <Property Name="num_persons" Type="Int32" />
-          <Property Name="date" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="users" Relationship="Self.users_bookings" FromRole="bookings" ToRole="users" />
+          <Property Name="IdBooking" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRestaurant" Type="Int32" />
+          <Property Name="NumPersons" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Users" Relationship="Self.users_bookings" FromRole="bookings" ToRole="users" />
         </EntityType>
-        <EntityType Name="image">
+        <EntityType Name="Image">
           <Key>
-            <PropertyRef Name="id_image" />
+            <PropertyRef Name="IdImage" />
           </Key>
-          <Property Name="id_image" Type="Int32" Nullable="false" />
-          <Property Name="image1" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="id_restaurant" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="restaurant" Relationship="Self.FK_images_restaurants" FromRole="images" ToRole="restaurants" />
+          <Property Name="IdImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdRestaurant" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_images_restaurants" FromRole="images" ToRole="restaurants" />
         </EntityType>
-        <EntityType Name="kitchen">
+        <EntityType Name="Kitchen">
           <Key>
-            <PropertyRef Name="id_kitchen" />
+            <PropertyRef Name="IdKitchen" />
           </Key>
-          <Property Name="id_kitchen" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="restaurants" Relationship="Self.restaurants_kitchens" FromRole="kitchens" ToRole="restaurants" />
+          <Property Name="IdKitchen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Restaurants" Relationship="Self.restaurants_kitchens" FromRole="kitchens" ToRole="restaurants" />
         </EntityType>
-        <EntityType Name="restaurant">
+        <EntityType Name="Restaurant">
           <Key>
-            <PropertyRef Name="id_restaurant" />
+            <PropertyRef Name="IdRestaurant" />
           </Key>
-          <Property Name="id_restaurant" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="number_count" Type="Int32" />
-          <Property Name="phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="timeOpen" Type="Time" Precision="0" />
-          <Property Name="timeClose" Type="Time" Precision="0" />
-          <Property Name="averageCheck" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="images" Relationship="Self.FK_images_restaurants" FromRole="restaurants" ToRole="images" />
-          <NavigationProperty Name="searchTerms" Relationship="Self.FK_searchTerms_restaurants" FromRole="restaurants" ToRole="searchTerms" />
-          <NavigationProperty Name="kitchens" Relationship="Self.restaurants_kitchens" FromRole="restaurants" ToRole="kitchens" />
-          <NavigationProperty Name="users" Relationship="Self.users_restaurants" FromRole="restaurants" ToRole="users" />
+          <Property Name="IdRestaurant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NumberCount" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="TimeOpen" Type="Time" Precision="0" />
+          <Property Name="TimeClose" Type="Time" Precision="0" />
+          <Property Name="AverageCheck" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Images" Relationship="Self.FK_images_restaurants" FromRole="restaurants" ToRole="images" />
+          <NavigationProperty Name="SearchTerms" Relationship="Self.FK_searchTerms_restaurants" FromRole="restaurants" ToRole="searchTerms" />
+          <NavigationProperty Name="Kitchens" Relationship="Self.restaurants_kitchens" FromRole="restaurants" ToRole="kitchens" />
+          <NavigationProperty Name="Users" Relationship="Self.users_restaurants" FromRole="restaurants" ToRole="users" />
         </EntityType>
-        <EntityType Name="role">
+        <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="id_role" />
+            <PropertyRef Name="IdRole" />
           </Key>
-          <Property Name="id_role" Type="Int32" Nullable="false" />
-          <Property Name="name_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="users" Relationship="Self.FK_users_roles" FromRole="roles" ToRole="users" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <Property Name="NameRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_users_roles" FromRole="roles" ToRole="users" />
         </EntityType>
-        <EntityType Name="searchTerm">
+        <EntityType Name="SearchTerm">
           <Key>
-            <PropertyRef Name="id_term" />
+            <PropertyRef Name="IdTerm" />
           </Key>
-          <Property Name="id_term" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="id_restaurant" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="restaurant" Relationship="Self.FK_searchTerms_restaurants" FromRole="searchTerms" ToRole="restaurants" />
+          <Property Name="IdTerm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="IdRestaurant" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_searchTerms_restaurants" FromRole="searchTerms" ToRole="restaurants" />
         </EntityType>
-        <EntityType Name="user">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="id_user" />
+            <PropertyRef Name="IdUser" />
           </Key>
-          <Property Name="id_user" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="id_role" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="role" Relationship="Self.FK_users_roles" FromRole="users" ToRole="roles" />
-          <NavigationProperty Name="bookings" Relationship="Self.users_bookings" FromRole="users" ToRole="bookings" />
-          <NavigationProperty Name="restaurants" Relationship="Self.users_restaurants" FromRole="users" ToRole="restaurants" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_users_roles" FromRole="users" ToRole="roles" />
+          <NavigationProperty Name="Bookings" Relationship="Self.users_bookings" FromRole="users" ToRole="bookings" />
+          <NavigationProperty Name="Restaurants" Relationship="Self.users_restaurants" FromRole="users" ToRole="restaurants" />
         </EntityType>
         <Association Name="FK_images_restaurants">
-          <End Role="restaurants" Type="Self.restaurant" Multiplicity="1" />
-          <End Role="images" Type="Self.image" Multiplicity="*" />
+          <End Role="restaurants" Type="prac32114Model.Restaurant" Multiplicity="1" />
+          <End Role="images" Type="prac32114Model.Image" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="restaurants">
-              <PropertyRef Name="id_restaurant" />
+              <PropertyRef Name="IdRestaurant" />
             </Principal>
             <Dependent Role="images">
-              <PropertyRef Name="id_restaurant" />
+              <PropertyRef Name="IdRestaurant" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_searchTerms_restaurants">
-          <End Role="restaurants" Type="Self.restaurant" Multiplicity="1" />
-          <End Role="searchTerms" Type="Self.searchTerm" Multiplicity="*" />
+          <End Role="restaurants" Type="prac32114Model.Restaurant" Multiplicity="1" />
+          <End Role="searchTerms" Type="prac32114Model.SearchTerm" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="restaurants">
-              <PropertyRef Name="id_restaurant" />
+              <PropertyRef Name="IdRestaurant" />
             </Principal>
             <Dependent Role="searchTerms">
-              <PropertyRef Name="id_restaurant" />
+              <PropertyRef Name="IdRestaurant" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_users_roles">
-          <End Role="roles" Type="Self.role" Multiplicity="1" />
-          <End Role="users" Type="Self.user" Multiplicity="*" />
+          <End Role="roles" Type="prac32114Model.Role" Multiplicity="1" />
+          <End Role="users" Type="prac32114Model.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="roles">
-              <PropertyRef Name="id_role" />
+              <PropertyRef Name="IdRole" />
             </Principal>
             <Dependent Role="users">
-              <PropertyRef Name="id_role" />
+              <PropertyRef Name="IdRole" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="restaurants_kitchens">
-          <End Role="kitchens" Type="Self.kitchen" Multiplicity="*" />
-          <End Role="restaurants" Type="Self.restaurant" Multiplicity="*" />
+          <End Role="kitchens" Type="prac32114Model.Kitchen" Multiplicity="*" />
+          <End Role="restaurants" Type="prac32114Model.Restaurant" Multiplicity="*" />
         </Association>
         <Association Name="users_bookings">
-          <End Role="bookings" Type="Self.booking" Multiplicity="*" />
-          <End Role="users" Type="Self.user" Multiplicity="*" />
+          <End Role="bookings" Type="prac32114Model.Booking" Multiplicity="*" />
+          <End Role="users" Type="prac32114Model.User" Multiplicity="*" />
         </Association>
         <Association Name="users_restaurants">
-          <End Role="restaurants" Type="Self.restaurant" Multiplicity="*" />
-          <End Role="users" Type="Self.user" Multiplicity="*" />
+          <End Role="restaurants" Type="prac32114Model.Restaurant" Multiplicity="*" />
+          <End Role="users" Type="prac32114Model.User" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="RestaurantDataEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="bookings" EntityType="Self.booking" />
-          <EntitySet Name="images" EntityType="Self.image" />
-          <EntitySet Name="kitchens" EntityType="Self.kitchen" />
-          <EntitySet Name="restaurants" EntityType="Self.restaurant" />
-          <EntitySet Name="roles" EntityType="Self.role" />
-          <EntitySet Name="searchTerms" EntityType="Self.searchTerm" />
-          <EntitySet Name="users" EntityType="Self.user" />
+        <EntityContainer Name="prac32114Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bookings1" EntityType="prac32114Model.Booking" />
+          <EntitySet Name="Images1" EntityType="prac32114Model.Image" />
+          <EntitySet Name="Kitchens1" EntityType="prac32114Model.Kitchen" />
+          <EntitySet Name="Restaurants1" EntityType="prac32114Model.Restaurant" />
+          <EntitySet Name="Roles1" EntityType="prac32114Model.Role" />
+          <EntitySet Name="SearchTerms1" EntityType="prac32114Model.SearchTerm" />
+          <EntitySet Name="Users1" EntityType="prac32114Model.User" />
           <AssociationSet Name="FK_images_restaurants" Association="Self.FK_images_restaurants">
-            <End Role="restaurants" EntitySet="restaurants" />
-            <End Role="images" EntitySet="images" />
+            <End Role="restaurants" EntitySet="Restaurants1" />
+            <End Role="images" EntitySet="Images1" />
           </AssociationSet>
           <AssociationSet Name="FK_searchTerms_restaurants" Association="Self.FK_searchTerms_restaurants">
-            <End Role="restaurants" EntitySet="restaurants" />
-            <End Role="searchTerms" EntitySet="searchTerms" />
+            <End Role="restaurants" EntitySet="Restaurants1" />
+            <End Role="searchTerms" EntitySet="SearchTerms1" />
           </AssociationSet>
           <AssociationSet Name="FK_users_roles" Association="Self.FK_users_roles">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="users" EntitySet="users" />
+            <End Role="roles" EntitySet="Roles1" />
+            <End Role="users" EntitySet="Users1" />
           </AssociationSet>
           <AssociationSet Name="restaurants_kitchens" Association="Self.restaurants_kitchens">
-            <End Role="kitchens" EntitySet="kitchens" />
-            <End Role="restaurants" EntitySet="restaurants" />
+            <End Role="kitchens" EntitySet="Kitchens1" />
+            <End Role="restaurants" EntitySet="Restaurants1" />
           </AssociationSet>
           <AssociationSet Name="users_bookings" Association="Self.users_bookings">
-            <End Role="bookings" EntitySet="bookings" />
-            <End Role="users" EntitySet="users" />
+            <End Role="bookings" EntitySet="Bookings1" />
+            <End Role="users" EntitySet="Users1" />
           </AssociationSet>
           <AssociationSet Name="users_restaurants" Association="Self.users_restaurants">
-            <End Role="restaurants" EntitySet="restaurants" />
-            <End Role="users" EntitySet="users" />
+            <End Role="restaurants" EntitySet="Restaurants1" />
+            <End Role="users" EntitySet="Users1" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -414,99 +414,99 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RestaurantDataModelStoreContainer" CdmEntityContainer="RestaurantDataEntities1">
-          <EntitySetMapping Name="bookings">
-            <EntityTypeMapping TypeName="RestaurantDataModel.booking">
+        <EntityContainerMapping StorageEntityContainer="prac32114ModelStoreContainer" CdmEntityContainer="prac32114Entities2">
+          <EntitySetMapping Name="Bookings1">
+            <EntityTypeMapping TypeName="prac32114Model.Booking">
               <MappingFragment StoreEntitySet="bookings">
-                <ScalarProperty Name="id_booking" ColumnName="id_booking" />
-                <ScalarProperty Name="id_restaurant" ColumnName="id_restaurant" />
-                <ScalarProperty Name="num_persons" ColumnName="num_persons" />
-                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="IdBooking" ColumnName="id_booking" />
+                <ScalarProperty Name="IdRestaurant" ColumnName="id_restaurant" />
+                <ScalarProperty Name="NumPersons" ColumnName="num_persons" />
+                <ScalarProperty Name="Date" ColumnName="date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="images">
-            <EntityTypeMapping TypeName="RestaurantDataModel.image">
+          <EntitySetMapping Name="Images1">
+            <EntityTypeMapping TypeName="prac32114Model.Image">
               <MappingFragment StoreEntitySet="images">
-                <ScalarProperty Name="id_image" ColumnName="id_image" />
-                <ScalarProperty Name="image1" ColumnName="image" />
-                <ScalarProperty Name="id_restaurant" ColumnName="id_restaurant" />
+                <ScalarProperty Name="IdImage" ColumnName="id_image" />
+                <ScalarProperty Name="ImagePath" ColumnName="image" />
+                <ScalarProperty Name="IdRestaurant" ColumnName="id_restaurant" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="kitchens">
-            <EntityTypeMapping TypeName="RestaurantDataModel.kitchen">
+          <EntitySetMapping Name="Kitchens1">
+            <EntityTypeMapping TypeName="prac32114Model.Kitchen">
               <MappingFragment StoreEntitySet="kitchens">
-                <ScalarProperty Name="id_kitchen" ColumnName="id_kitchen" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="IdKitchen" ColumnName="id_kitchen" />
+                <ScalarProperty Name="Name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="restaurants">
-            <EntityTypeMapping TypeName="RestaurantDataModel.restaurant">
+          <EntitySetMapping Name="Restaurants1">
+            <EntityTypeMapping TypeName="prac32114Model.Restaurant">
               <MappingFragment StoreEntitySet="restaurants">
-                <ScalarProperty Name="id_restaurant" ColumnName="id_restaurant" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="number_count" ColumnName="number_count" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="timeOpen" ColumnName="timeOpen" />
-                <ScalarProperty Name="timeClose" ColumnName="timeClose" />
-                <ScalarProperty Name="averageCheck" ColumnName="averageCheck" />
+                <ScalarProperty Name="IdRestaurant" ColumnName="id_restaurant" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+                <ScalarProperty Name="Address" ColumnName="address" />
+                <ScalarProperty Name="NumberCount" ColumnName="number_count" />
+                <ScalarProperty Name="Phone" ColumnName="phone" />
+                <ScalarProperty Name="TimeOpen" ColumnName="timeOpen" />
+                <ScalarProperty Name="TimeClose" ColumnName="timeClose" />
+                <ScalarProperty Name="AverageCheck" ColumnName="averageCheck" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="roles">
-            <EntityTypeMapping TypeName="RestaurantDataModel.role">
+          <EntitySetMapping Name="Roles1">
+            <EntityTypeMapping TypeName="prac32114Model.Role">
               <MappingFragment StoreEntitySet="roles">
-                <ScalarProperty Name="id_role" ColumnName="id_role" />
-                <ScalarProperty Name="name_role" ColumnName="name_role" />
+                <ScalarProperty Name="IdRole" ColumnName="id_role" />
+                <ScalarProperty Name="NameRole" ColumnName="name_role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="searchTerms">
-            <EntityTypeMapping TypeName="RestaurantDataModel.searchTerm">
+          <EntitySetMapping Name="SearchTerms1">
+            <EntityTypeMapping TypeName="prac32114Model.SearchTerm">
               <MappingFragment StoreEntitySet="searchTerms">
-                <ScalarProperty Name="id_term" ColumnName="id_term" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id_restaurant" ColumnName="id_restaurant" />
+                <ScalarProperty Name="IdTerm" ColumnName="id_term" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="IdRestaurant" ColumnName="id_restaurant" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="RestaurantDataModel.user">
+          <EntitySetMapping Name="Users1">
+            <EntityTypeMapping TypeName="prac32114Model.User">
               <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="id_user" ColumnName="id_user" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="IdUser" ColumnName="id_user" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Phone" ColumnName="phone" />
+                <ScalarProperty Name="Password" ColumnName="password" />
+                <ScalarProperty Name="IdRole" ColumnName="id_role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="restaurants_kitchens" TypeName="RestaurantDataModel.restaurants_kitchens" StoreEntitySet="restaurants_kitchens">
+          <AssociationSetMapping Name="restaurants_kitchens" TypeName="prac32114Model.restaurants_kitchens" StoreEntitySet="restaurants_kitchens">
             <EndProperty Name="kitchens">
-              <ScalarProperty Name="id_kitchen" ColumnName="id_kitchen" />
+              <ScalarProperty Name="IdKitchen" ColumnName="id_kitchen" />
             </EndProperty>
             <EndProperty Name="restaurants">
-              <ScalarProperty Name="id_restaurant" ColumnName="id_restaurant" />
+              <ScalarProperty Name="IdRestaurant" ColumnName="id_restaurant" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="users_bookings" TypeName="RestaurantDataModel.users_bookings" StoreEntitySet="users_bookings">
+          <AssociationSetMapping Name="users_bookings" TypeName="prac32114Model.users_bookings" StoreEntitySet="users_bookings">
             <EndProperty Name="bookings">
-              <ScalarProperty Name="id_booking" ColumnName="id_booking" />
+              <ScalarProperty Name="IdBooking" ColumnName="id_booking" />
             </EndProperty>
             <EndProperty Name="users">
-              <ScalarProperty Name="id_user" ColumnName="id_user" />
+              <ScalarProperty Name="IdUser" ColumnName="id_user" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="users_restaurants" TypeName="RestaurantDataModel.users_restaurants" StoreEntitySet="users_restaurants">
+          <AssociationSetMapping Name="users_restaurants" TypeName="prac32114Model.users_restaurants" StoreEntitySet="users_restaurants">
             <EndProperty Name="restaurants">
-              <ScalarProperty Name="id_restaurant" ColumnName="id_restaurant" />
+              <ScalarProperty Name="IdRestaurant" ColumnName="id_restaurant" />
             </EndProperty>
             <EndProperty Name="users">
-              <ScalarProperty Name="id_user" ColumnName="id_user" />
+              <ScalarProperty Name="IdUser" ColumnName="id_user" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

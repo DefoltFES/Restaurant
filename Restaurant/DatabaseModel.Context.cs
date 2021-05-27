@@ -13,9 +13,10 @@ namespace Restaurant
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DatabaseContext : DbContext
+    public partial class RestaurantContext : DbContext
     {
-        public DatabaseContext() : base("name=RestaurantDataEntities1")
+        public RestaurantContext()
+            : base("name=prac32114Entities2")
         {
         }
     
@@ -24,12 +25,12 @@ namespace Restaurant
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<booking> bookings { get; set; }
-        public virtual DbSet<image> images { get; set; }
-        public virtual DbSet<kitchen> kitchens { get; set; }
-        public virtual DbSet<restaurant> restaurants { get; set; }
-        public virtual DbSet<role> roles { get; set; }
-        public virtual DbSet<searchTerm> searchTerms { get; set; }
-        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<Booking> Bookings { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Kitchen> Kitchens { get; set; }
+        public virtual DbSet<Restaurant> Restaurants { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<SearchTerm> SearchTerms { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -12,9 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Restaurant.ViewModel;
+using Restaurant;
+using RestaurantApp.ViewModel;
 
-namespace Restaurant.Views
+namespace RestaurantApp.Views
 {
     /// <summary>
     /// Interaction logic for RegisterPage.xaml
@@ -62,9 +63,10 @@ namespace Restaurant.Views
             RoleA.IsChecked = false;
             RadioButtonAdmin.Data = (PathGeometry)TryFindResource("RadioButtonChecked");
             RadioButtonAdmin.Fill = (SolidColorBrush)TryFindResource("SecondColor");
-            this.NavigationService.Navigate(new RegisterFormPage(new RegistrationFormViewModel()
+            this.NavigationService.Navigate(new RegisterFormPage(new RegistrationFormViewModel(new User())
             {
-                Title = "Это необходимо для управления ресторанами"
+                Title = "Это необходимо для управления ресторанами",
+                Role = "admin"
             }));
 
 
@@ -75,9 +77,10 @@ namespace Restaurant.Views
             RoleB.IsChecked = false;
             RadioButtonUser.Data = (PathGeometry)TryFindResource("RadioButtonChecked");
             RadioButtonUser.Fill = (SolidColorBrush)TryFindResource("SecondColor");
-            this.NavigationService.Navigate(new RegisterFormPage(new RegistrationFormViewModel()
+            this.NavigationService.Navigate(new RegisterFormPage(new RegistrationFormViewModel(new User())
             {
-                Title = "Это необходимо для бронирования столиков"
+                Title = "Это необходимо для бронирования столиков",
+                Role = "user"
             }));
 
         }

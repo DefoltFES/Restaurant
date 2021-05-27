@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Restaurant.Views
+namespace RestaurantApp.Views
 {
     /// <summary>
     /// Interaction logic for RegistrationPage.xaml

@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Restaurant.ViewModel
+namespace RestaurantApp.ViewModel
 {
     public class LoginViewModel
     {
@@ -17,10 +17,10 @@ namespace Restaurant.ViewModel
 
         public bool isExist()
         {
-            var user = App.dbContext.users.Where(x => x.phone == PhoneNumber).FirstOrDefault();
+            var user = App.dbContext.Users.Where(x => x.Phone == PhoneNumber).FirstOrDefault();
             if (user !=null)
             {
-                if (user.password == Password)
+                if (user.Password == Password)
                 {
                     return true;
                 }
@@ -30,7 +30,7 @@ namespace Restaurant.ViewModel
 
         public void WriteLog()
         {
-            var user= App.dbContext.users.Where(x => x.phone == PhoneNumber).FirstOrDefault();
+            var user= App.dbContext.Users.Where(x => x.Phone == PhoneNumber).FirstOrDefault();
             var fullDirectoryPath = System.AppDomain.CurrentDomain.BaseDirectory + @"logs";
             var fullFilePath = fullDirectoryPath + @"\history.txt";
             if (!Directory.Exists(fullDirectoryPath))
@@ -44,7 +44,7 @@ namespace Restaurant.ViewModel
             }
             using (StreamWriter writer=new StreamWriter(new FileStream(fullFilePath,FileMode.Append,FileAccess.Write)))
             {
-                writer.WriteLine(user.id_user+ " "+" "+App.TodayDate); 
+                writer.WriteLine(user.IdUser+ " "+" "+App.TodayDate); 
                 writer.Close();
             }
         }
@@ -58,15 +58,15 @@ namespace Restaurant.ViewModel
                 using (StreamReader streamReader = new StreamReader(new FileStream(fullFilePath, FileMode.Open)))
                 {
                     var lastLogin = streamReader.ReadToEnd().Split(' ');
-                    var user = App.dbContext.users.Find(Convert.ToInt32(lastLogin[0]));
-                    if (user.role.id_role == 1)
+                    var user = App.dbContext.Users.Find(Convert.ToInt32(lastLogin[0]));
+                    if (user.Role.IdRole == 1)
                     {
                         DateTime dateLastLogin = DateTime.Parse(lastLogin[2]);
                         var razniza = (App.TodayDate - dateLastLogin).TotalDays;
                         if (razniza <= 7)
                         {
-                            Password = user.password;
-                            PhoneNumber = user.phone;
+                            Password = user.Password;
+                            PhoneNumber = user.Phone;
                             return true;
                         }
                     }

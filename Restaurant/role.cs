@@ -12,18 +12,18 @@ namespace Restaurant
     using System;
     using System.Collections.Generic;
     
-    public partial class role
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public role()
+        public Role()
         {
-            this.users = new HashSet<user>();
+            this.Users = new HashSet<User>();
         }
     
-        public int id_role { get; set; }
-        public string name_role { get; set; }
+        public int IdRole { get; set; }
+        public string NameRole { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

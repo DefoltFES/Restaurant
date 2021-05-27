@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace Restaurant.Properties
+namespace RestaurantApp.Properties
 {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.

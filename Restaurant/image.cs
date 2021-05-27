@@ -12,12 +12,12 @@ namespace Restaurant
     using System;
     using System.Collections.Generic;
     
-    public partial class image
+    public partial class Image
     {
-        public int id_image { get; set; }
-        public byte[] image1 { get; set; }
-        public int id_restaurant { get; set; }
+        public int IdImage { get; set; }
+        public string ImagePath { get; set; }
+        public int IdRestaurant { get; set; }
     
-        public virtual restaurant restaurant { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

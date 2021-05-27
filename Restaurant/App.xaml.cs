@@ -7,15 +7,16 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Restaurant;
 
-namespace Restaurant
+namespace RestaurantApp
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
-        public static DatabaseContext dbContext=new DatabaseContext();
+        public static RestaurantContext dbContext=new RestaurantContext();
 
         public static DateTime TodayDate { get; set; }
         private void Application_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
@@ -28,11 +29,8 @@ namespace Restaurant
                 }
                 catch (SqlException exception)
                 {
-                    if (exception.Number.Equals(11001))
-                    {
                         MessageBox.Show("Нет подключения к серверу");
                         Environment.Exit(exception.ErrorCode);
-                    }
                 }
                 finally
                 {

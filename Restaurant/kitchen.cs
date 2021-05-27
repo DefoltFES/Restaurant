@@ -12,18 +12,18 @@ namespace Restaurant
     using System;
     using System.Collections.Generic;
     
-    public partial class kitchen
+    public partial class Kitchen
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public kitchen()
+        public Kitchen()
         {
-            this.restaurants = new HashSet<restaurant>();
+            this.Restaurants = new HashSet<Restaurant>();
         }
     
-        public int id_kitchen { get; set; }
-        public string name { get; set; }
+        public int IdKitchen { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<restaurant> restaurants { get; set; }
+        public virtual ICollection<Restaurant> Restaurants { get; set; }
     }
 }

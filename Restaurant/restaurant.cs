@@ -12,34 +12,34 @@ namespace Restaurant
     using System;
     using System.Collections.Generic;
     
-    public partial class restaurant
+    public partial class Restaurant
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public restaurant()
+        public Restaurant()
         {
-            this.images = new HashSet<image>();
-            this.searchTerms = new HashSet<searchTerm>();
-            this.kitchens = new HashSet<kitchen>();
-            this.users = new HashSet<user>();
+            this.Images = new HashSet<Image>();
+            this.SearchTerms = new HashSet<SearchTerm>();
+            this.Kitchens = new HashSet<Kitchen>();
+            this.Users = new HashSet<User>();
         }
     
-        public int id_restaurant { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string address { get; set; }
-        public Nullable<int> number_count { get; set; }
-        public string phone { get; set; }
-        public Nullable<System.TimeSpan> timeOpen { get; set; }
-        public Nullable<System.TimeSpan> timeClose { get; set; }
-        public string averageCheck { get; set; }
+        public int IdRestaurant { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Address { get; set; }
+        public Nullable<int> NumberCount { get; set; }
+        public string Phone { get; set; }
+        public Nullable<System.TimeSpan> TimeOpen { get; set; }
+        public Nullable<System.TimeSpan> TimeClose { get; set; }
+        public string AverageCheck { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<image> images { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<searchTerm> searchTerms { get; set; }
+        public virtual ICollection<SearchTerm> SearchTerms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<kitchen> kitchens { get; set; }
+        public virtual ICollection<Kitchen> Kitchens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

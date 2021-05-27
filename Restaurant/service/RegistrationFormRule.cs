@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace Restaurant.service
+namespace RestaurantApp.service
 {
     class RegistrationFormRule:ValidationRule
     {

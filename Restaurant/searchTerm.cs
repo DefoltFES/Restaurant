@@ -12,12 +12,12 @@ namespace Restaurant
     using System;
     using System.Collections.Generic;
     
-    public partial class searchTerm
+    public partial class SearchTerm
     {
-        public int id_term { get; set; }
-        public string name { get; set; }
-        public int id_restaurant { get; set; }
+        public int IdTerm { get; set; }
+        public string Name { get; set; }
+        public int IdRestaurant { get; set; }
     
-        public virtual restaurant restaurant { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

@@ -15,9 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Restaurant.ViewModel;
+using RestaurantApp.ViewModel;
 
-namespace Restaurant.Views
+namespace RestaurantApp.Views
 {
     /// <summary>
     /// Interaction logic for LoginPage.xaml

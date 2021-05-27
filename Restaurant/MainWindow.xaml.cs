@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -15,10 +16,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Restaurant.ViewModel;
-using Restaurant.Views;
+using RestaurantApp.ViewModel;
+using RestaurantApp.Views;
 
-namespace Restaurant
+namespace RestaurantApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -38,16 +39,27 @@ namespace Restaurant
 
         private DateTime GetDate()
         {
-            using (var client = new TcpClient("time.nist.gov", 13))
+            try
             {
-                using (var streamReader = new StreamReader(client.GetStream()))
+                using (var client = new TcpClient("time.nist.gov", 13))
                 {
-                    var response = streamReader.ReadToEnd();
-                    var utcDateTimeString = response.Substring(7, 17);
-                    return DateTime.ParseExact(utcDateTimeString, "yy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture,
-                        DateTimeStyles.AssumeUniversal);
+
+                    using (var streamReader = new StreamReader(client.GetStream()))
+                    {
+                        var response = streamReader.ReadToEnd();
+                        var utcDateTimeString = response.Substring(7, 17);
+                        return DateTime.ParseExact(utcDateTimeString, "yy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture,
+                            DateTimeStyles.AssumeUniversal);
+                    }
+
                 }
             }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
+           
+            return DateTime.Now;
 
             
             
