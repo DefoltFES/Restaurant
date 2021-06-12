@@ -111,7 +111,15 @@ namespace RestaurantApp.Views
                 if (Context.isExist())
                 {
                     Context.WriteLog();
-                    this.NavigationService.Navigate(new TestPage());
+                    if (Context.Role == "admin")
+                    {
+                        this.NavigationService.Navigate(new ListAdminPage(new ListAdminPageViewModel(App.dbContext.Users.Find(Context.Id))));
+                    }
+
+                    if (Context.Role=="user")
+                    {
+                        this.NavigationService.Navigate(new TestPage());
+                    }
                 }
                 else
                 {

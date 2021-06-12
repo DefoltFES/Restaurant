@@ -7,15 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Restaurant
+namespace RestaurantApp
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RestaurantContext : DbContext
+    public partial class prac32114Entities2 : DbContext
     {
-        public RestaurantContext()
+        public prac32114Entities2()
             : base("name=prac32114Entities2")
         {
         }

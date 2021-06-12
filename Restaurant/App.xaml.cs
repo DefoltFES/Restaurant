@@ -16,7 +16,7 @@ namespace RestaurantApp
     /// </summary>
     public partial class App : Application
     {
-        public static RestaurantContext dbContext=new RestaurantContext();
+        public static prac32114Entities2 dbContext=new prac32114Entities2();
 
         public static DateTime TodayDate { get; set; }
         private void Application_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)

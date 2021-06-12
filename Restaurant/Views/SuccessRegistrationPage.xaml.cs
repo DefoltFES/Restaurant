@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Restaurant.ViewModel;
+using RestaurantApp;
+using RestaurantApp.ViewModel;
+using RestaurantApp.Views;
 
 namespace Restaurant.Views
 {
@@ -35,7 +37,15 @@ namespace Restaurant.Views
         private void ResumeButton(object sender, RoutedEventArgs e)
         {
             Context.WriteLog();
+            if (Context.Role == "admin")
+            {
+                this.NavigationService.Navigate(new ListAdminPage(new ListAdminPageViewModel(App.dbContext.Users.Find(Context.Id))));
+            }
 
+            if (Context.Role == "user")
+            {
+                return;
+            }
         }
     }
 }

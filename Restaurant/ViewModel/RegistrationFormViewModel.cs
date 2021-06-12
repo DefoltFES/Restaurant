@@ -55,7 +55,7 @@ namespace RestaurantApp.ViewModel
             }
 
             App.dbContext.Users.Add(user);
-            //App.dbContext.SaveChanges();
+            App.dbContext.SaveChanges();
         }
       
         public void GeneratePassword()

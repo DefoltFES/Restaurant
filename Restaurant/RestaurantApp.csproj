@@ -107,16 +107,40 @@
     <Compile Include="SearchTerm.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="service\AddressRule.cs" />
+    <Compile Include="service\CountRule.cs" />
     <Compile Include="service\FieldRule.cs" />
+    <Compile Include="service\OneRubleConvector.cs" />
     <Compile Include="service\PasswordRule.cs" />
+    <Compile Include="service\PathToImageConvertor.cs" />
     <Compile Include="service\PhoneNumberRule.cs" />
     <Compile Include="service\RegistrationFormRule.cs" />
+    <Compile Include="service\ThreeRubleConvector.cs" />
+    <Compile Include="service\TwoRubleConvertor.cs" />
     <Compile Include="User.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\CreateRestorauntViewModel.cs" />
+    <Compile Include="ViewModel\DialogWindowModel.cs" />
+    <Compile Include="ViewModel\ListAdminPageViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\RegistrationFormViewModel.cs" />
     <Compile Include="ViewModel\SuccessRegistrationViewModel.cs" />
+    <Compile Include="Views\CreateBookingPage.xaml.cs">
+      <DependentUpon>CreateBookingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateRestaurantPage.xaml.cs">
+      <DependentUpon>CreateRestaurantPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListAdminPage.xaml.cs">
+      <DependentUpon>ListAdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListUserPage.xaml.cs">
+      <DependentUpon>ListUserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -152,6 +176,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="resource\resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateBookingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateRestaurantPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,6 +271,7 @@
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
       <LastGenOutput>DatabaseModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="resource\man-shrugging_1f937-200d-2642-fe0f 1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Restaurant
+namespace RestaurantApp
 {
     using System;
     using System.Collections.Generic;

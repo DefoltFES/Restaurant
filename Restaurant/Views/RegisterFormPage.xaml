@@ -9,7 +9,7 @@
      
       Title="RegisterFormPage">
 <ScrollViewer>
-   <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+   <StackPanel Margin="0,0,250,0" HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock FontFamily="{StaticResource Bold}" FontSize="64" Foreground="{StaticResource ContentText}" Text="Заполните данные&#xA;о себе"></TextBlock>
         <TextBlock Foreground="{StaticResource TextPlaceHolder}" FontFamily="{StaticResource Regular}" FontSize="20" Text="{Binding Title}"></TextBlock>
        <Border Height="85" x:Name="BorderPhone" Margin="0,33,0,0" Padding="22,0,0,0" BorderThickness="1"  BorderBrush="{StaticResource ButtonOutline}" CornerRadius="3.5">

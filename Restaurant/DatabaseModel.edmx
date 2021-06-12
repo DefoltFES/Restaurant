@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="prac32114Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="prac32114Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bookings">
           <Key>
             <PropertyRef Name="id_booking" />
@@ -19,7 +19,7 @@
             <PropertyRef Name="id_image" />
           </Key>
           <Property Name="id_image" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="image" Type="varchar(max)" />
+          <Property Name="image" Type="nvarchar(max)" />
           <Property Name="id_restaurant" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="kitchens">
@@ -27,21 +27,22 @@
             <PropertyRef Name="id_kitchen" />
           </Key>
           <Property Name="id_kitchen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="restaurants">
           <Key>
             <PropertyRef Name="id_restaurant" />
           </Key>
           <Property Name="id_restaurant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="120" />
-          <Property Name="description" Type="text" />
-          <Property Name="address" Type="text" />
+          <Property Name="name" Type="nvarchar" MaxLength="120" />
+          <Property Name="description" Type="ntext" />
+          <Property Name="address" Type="ntext" />
           <Property Name="number_count" Type="int" />
-          <Property Name="phone" Type="varchar" MaxLength="13" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
           <Property Name="timeOpen" Type="time" Precision="0" />
           <Property Name="timeClose" Type="time" Precision="0" />
           <Property Name="averageCheck" Type="nchar" MaxLength="10" />
+          <Property Name="isTerrassa" Type="bit" />
         </EntityType>
         <EntityType Name="restaurants_kitchens">
           <Key>
@@ -63,7 +64,7 @@
             <PropertyRef Name="id_term" />
           </Key>
           <Property Name="id_term" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="150" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
           <Property Name="id_restaurant" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="users">
@@ -71,7 +72,7 @@
             <PropertyRef Name="id_user" />
           </Key>
           <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="150" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
           <Property Name="phone" Type="varchar" MaxLength="13" />
           <Property Name="password" Type="varchar" MaxLength="100" />
           <Property Name="id_role" Type="int" Nullable="false" />
@@ -248,8 +249,7 @@
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="prac32114Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -268,7 +268,7 @@
             <PropertyRef Name="IdImage" />
           </Key>
           <Property Name="IdImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IdRestaurant" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_images_restaurants" FromRole="images" ToRole="restaurants" />
         </EntityType>
@@ -277,7 +277,7 @@
             <PropertyRef Name="IdKitchen" />
           </Key>
           <Property Name="IdKitchen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Restaurants" Relationship="Self.restaurants_kitchens" FromRole="kitchens" ToRole="restaurants" />
         </EntityType>
         <EntityType Name="Restaurant">
@@ -285,11 +285,11 @@
             <PropertyRef Name="IdRestaurant" />
           </Key>
           <Property Name="IdRestaurant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NumberCount" Type="Int32" />
-          <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TimeOpen" Type="Time" Precision="0" />
           <Property Name="TimeClose" Type="Time" Precision="0" />
           <Property Name="AverageCheck" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -297,6 +297,7 @@
           <NavigationProperty Name="SearchTerms" Relationship="Self.FK_searchTerms_restaurants" FromRole="restaurants" ToRole="searchTerms" />
           <NavigationProperty Name="Kitchens" Relationship="Self.restaurants_kitchens" FromRole="restaurants" ToRole="kitchens" />
           <NavigationProperty Name="Users" Relationship="Self.users_restaurants" FromRole="restaurants" ToRole="users" />
+          <Property Name="isTerrassa" Type="Boolean" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -311,7 +312,7 @@
             <PropertyRef Name="IdTerm" />
           </Key>
           <Property Name="IdTerm" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="IdRestaurant" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Restaurant" Relationship="Self.FK_searchTerms_restaurants" FromRole="searchTerms" ToRole="restaurants" />
         </EntityType>
@@ -445,6 +446,7 @@
           <EntitySetMapping Name="Restaurants1">
             <EntityTypeMapping TypeName="prac32114Model.Restaurant">
               <MappingFragment StoreEntitySet="restaurants">
+                <ScalarProperty Name="isTerrassa" ColumnName="isTerrassa" />
                 <ScalarProperty Name="IdRestaurant" ColumnName="id_restaurant" />
                 <ScalarProperty Name="Name" ColumnName="name" />
                 <ScalarProperty Name="Description" ColumnName="description" />

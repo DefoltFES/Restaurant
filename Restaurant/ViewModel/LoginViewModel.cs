@@ -14,6 +14,8 @@ namespace RestaurantApp.ViewModel
     {
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
+        public int Id { get; set; }
+        public string Role { get; set; }
 
         public bool isExist()
         {
@@ -59,6 +61,8 @@ namespace RestaurantApp.ViewModel
                 {
                     var lastLogin = streamReader.ReadToEnd().Split(' ');
                     var user = App.dbContext.Users.Find(Convert.ToInt32(lastLogin[0]));
+                    this.Role = user.Role.NameRole;
+                    this.Id = user.IdUser;
                     if (user.Role.IdRole == 1)
                     {
                         DateTime dateLastLogin = DateTime.Parse(lastLogin[2]);

@@ -1,0 +1,72 @@
+﻿<Page x:Class="RestaurantApp.Views.ListAdminPage"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+          xmlns:local="clr-namespace:Restaurant.Views"
+          mc:Ignorable="d" 
+          d:DesignHeight="800" d:DesignWidth="1440"
+          Loaded="ListAdminPage_OnLoaded">
+
+    <StackPanel>
+        <Border Margin="0,47,63,0" CornerRadius="4" BorderThickness="1.5" HorizontalAlignment="Right" BorderBrush="{StaticResource ErrorButtonOutline}">
+            <Button Click="ExitClick" BorderBrush="Transparent" Padding="27,11,27,11" Foreground="{StaticResource ErrorButtonText}" FontSize="17" FontFamily="{StaticResource Medium}" Background="Transparent" >
+                ВЫЙТИ
+            </Button>
+        </Border>
+
+        <TextBlock Margin="108,-20,0,0" FontSize="54" FontFamily="{StaticResource ResourceKey=Bold}" Foreground="{StaticResource ContentText}" Text="{Binding Name, StringFormat='{}Здравствуйте, {0}!'}"/>
+        <TextBlock Margin="108,15,0,0" FontSize="20" Foreground="{StaticResource TextPlaceHolder}"  FontFamily="{StaticResource Regular}">Управление ресторанами</TextBlock>
+       
+        <StackPanel x:Name="HasData" Visibility="Collapsed">
+            <Border  CornerRadius="4" HorizontalAlignment="Right" BorderThickness="1.5" BorderBrush="{StaticResource SecondColor}" Margin="0,18,60,0">
+                <Button Click="AddClick_OnClick" BorderBrush="Transparent" Padding="18,11,18,11" Foreground="{StaticResource SecondColor}" FontSize="17" FontFamily="{StaticResource Medium}" Background="Transparent" >
+                    ДОБАВИТЬ
+                </Button>
+            </Border>
+            <StackPanel Margin="112,16,112,0" Orientation="Horizontal">
+            <TextBlock FontSize="21" FontFamily="{StaticResource ResourceKey=Bold}" Foreground="{StaticResource ContentText}" Text="НАЗВАНИЕ РЕСТОРАНА"/>
+            <TextBlock Margin="87,0,0,0" FontSize="21" FontFamily="{StaticResource ResourceKey=Bold}" Foreground="{StaticResource ContentText}" Text="АДРЕС"/>
+            <TextBlock Margin="227,0,0,0" FontSize="21" FontFamily="{StaticResource ResourceKey=Bold}" Foreground="{StaticResource ContentText}" Text="УПРАВЛЕНИЕ"/>
+        </StackPanel>
+        <Border Margin="54,23,54,0" BorderThickness="0,0,0,2" BorderBrush="{StaticResource SecondColor}"></Border>
+
+            <ListView x:Name="ListRestoraunts"  ItemsSource="{Binding Restaurants}" BorderThickness="0" Margin="0,10,0,0">
+            <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel  Orientation="Horizontal">
+                                <TextBlock Foreground="{StaticResource ContentText}" FontFamily="{StaticResource Regular}"  Text="{Binding Name}" FontSize="27"  />
+                                <TextBlock  Foreground="{StaticResource ContentText}" FontFamily="{StaticResource Regular}" Text="{Binding Address}" FontSize="23" Margin="107,0,0,0"/>
+                                <Border  CornerRadius="4"  BorderThickness="1.5" BorderBrush="{StaticResource SecondColor}" Margin="139,0,0,0"  >
+                                <Button x:Name="Edit" Click="Edit_OnClick" Width="261"  Height="45"  BorderBrush="Transparent" Padding="52,11,52,11" Foreground="{StaticResource SecondColor}" FontSize="17" FontFamily="{StaticResource Medium}" Background="Transparent" >
+                                        РЕДАКТИРОВАТЬ
+                                    </Button>
+                                </Border>
+                                <Border  CornerRadius="4"  BorderThickness="1.5" BorderBrush="{StaticResource ErrorButtonOutline}" Margin="83,0,0,0"  >
+                                    <Button x:Name="Delete" Click="Delete_OnClick" Width="161"  Height="45"  BorderBrush="Transparent" Padding="38,11,38,11" Foreground="{StaticResource ErrorButtonText}" FontSize="17" FontFamily="{StaticResource Medium}" Background="Transparent" >
+                                        УДАЛИТЬ
+                                    </Button>
+                                </Border>
+                        </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Margin="112,0,114,0" >
+                    </StackPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+        </StackPanel>
+        <StackPanel Visibility="Visible" x:Name="NoData" Background="Transparent" Margin="500,226,500,324">
+                <Image HorizontalAlignment="Center" Width="108" Height="108"  Source="{StaticResource NoData}"></Image>
+            <TextBlock Margin="0,20,0,0" TextAlignment="Center" FontFamily="{StaticResource Bold}" FontSize="21" Foreground="{StaticResource ContentText}">ТУТ ПУСТО</TextBlock>
+            <TextBlock Margin="0,16,0,0" TextAlignment="Center" FontFamily="{StaticResource Regular}" FontSize="20" Foreground="{StaticResource TextPlaceHolder}">Нет ресторанов, которыми можно управлять</TextBlock>
+            <Border CornerRadius="4" HorizontalAlignment="Center" BorderThickness="1.5" BorderBrush="{StaticResource SecondColor}" Margin="0,17,0,0">
+                <Button Click="AddClick_OnClick" x:Name="AddClick" BorderBrush="Transparent" Padding="60,11,60,11" Foreground="{StaticResource SecondColor}" FontSize="17" FontFamily="{StaticResource Medium}" Background="Transparent" >
+                    ДОБАВИТЬ
+                </Button>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</Page>

@@ -6,19 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
+using Restaurant;
 using RestaurantApp;
 
-namespace Restaurant.ViewModel
+namespace RestaurantApp.ViewModel
 {
     public class SuccessRegistrationViewModel
     {
         public string Phone { get; set; }
         public string Password { get; }
-
+        public int Id { get; set; }
+        public string Role { get; }
         public SuccessRegistrationViewModel(User user)
         {
             Phone = user.Phone;
             Password = user.Password;
+            Role = user.Role.NameRole;
+            Id = user.IdUser;
         }
 
         public void SavePassword()
@@ -27,9 +31,15 @@ namespace Restaurant.ViewModel
             saveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
             if (saveFileDialog.ShowDialog() == true)
             {
+                return;
+            }
+            else
+            {
                 string filename = saveFileDialog.FileName;
                 System.IO.File.WriteAllText(filename, Password);
             }
+          
+            
         }
 
         public void WriteLog()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,9 +39,7 @@ namespace RestaurantApp.Views
             }
             else
             {
-
                 RoleB.IsChecked = true;
-
             }
            
         }
@@ -54,7 +53,15 @@ namespace RestaurantApp.Views
             }
             else
             {
+               
                 RoleA.IsChecked = true;
+               Thread.Sleep(1000);
+                this.NavigationService.Navigate(new RegisterFormPage(new RegistrationFormViewModel(new User())
+                {
+                    Title = "Это необходимо для бронирования столиков",
+                    Role = "user"
+                }));
+
             }
         }
 

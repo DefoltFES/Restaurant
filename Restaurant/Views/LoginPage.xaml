@@ -11,7 +11,7 @@
 
    <ScrollViewer>
         <StackPanel>
-        <StackPanel   Width="495" Margin="20,120" VerticalAlignment="Center" HorizontalAlignment="Left"   >
+        <StackPanel   Width="495" Margin="130,278" VerticalAlignment="Center" HorizontalAlignment="Left"   >
             <DockPanel HorizontalAlignment="Stretch"    >
                 <TextBlock  DockPanel.Dock="Left" FontSize="64" FontFamily="{StaticResource Bold}">Вход</TextBlock>
                 <Border HorizontalAlignment="Right" VerticalAlignment="Center" Width="188" Height="44" CornerRadius="4" DockPanel.Dock="Right" BorderThickness="1.5" BorderBrush="{StaticResource SubSecondColor}">
