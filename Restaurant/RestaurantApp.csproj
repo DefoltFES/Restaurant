@@ -44,6 +44,9 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -117,12 +120,14 @@
     <Compile Include="service\RegistrationFormRule.cs" />
     <Compile Include="service\ThreeRubleConvector.cs" />
     <Compile Include="service\TwoRubleConvertor.cs" />
+    <Compile Include="service\WeatherResponse.cs" />
     <Compile Include="User.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\CreateRestorauntViewModel.cs" />
     <Compile Include="ViewModel\DialogWindowModel.cs" />
     <Compile Include="ViewModel\ListAdminPageViewModel.cs" />
+    <Compile Include="ViewModel\ListUserViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\RegistrationFormViewModel.cs" />
     <Compile Include="ViewModel\SuccessRegistrationViewModel.cs" />
@@ -137,6 +142,9 @@
     </Compile>
     <Compile Include="Views\ListAdminPage.xaml.cs">
       <DependentUpon>ListAdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListBookingPage.xaml.cs">
+      <DependentUpon>ListBookingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ListUserPage.xaml.cs">
       <DependentUpon>ListUserPage.xaml</DependentUpon>
@@ -192,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ListAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListBookingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -271,6 +283,24 @@
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
       <LastGenOutput>DatabaseModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="resource\Weather\clear-cloudy.png" />
+    <Resource Include="resource\Weather\cloudy.png" />
+    <Resource Include="resource\Weather\cold.png" />
+    <Resource Include="resource\Weather\drizzle.png" />
+    <Resource Include="resource\Weather\foggy.png" />
+    <Resource Include="resource\Weather\hail.png" />
+    <Resource Include="resource\Weather\hot.png" />
+    <Resource Include="resource\Weather\isolated-thunderstroms.png" />
+    <Resource Include="resource\Weather\mostly-cloudy.png" />
+    <Resource Include="resource\Weather\partly-cloudy.png" />
+    <Resource Include="resource\Weather\showers.png" />
+    <Resource Include="resource\Weather\sleet.png" />
+    <Resource Include="resource\Weather\snow-flurries.png" />
+    <Resource Include="resource\Weather\snow.png" />
+    <Resource Include="resource\Weather\sunny.png" />
+    <Resource Include="resource\Weather\thunderstroms.png" />
+    <Resource Include="resource\Weather\tornado.png" />
+    <Resource Include="resource\Weather\windy.png" />
     <Resource Include="resource\man-shrugging_1f937-200d-2642-fe0f 1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

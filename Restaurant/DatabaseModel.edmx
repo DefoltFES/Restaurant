@@ -43,6 +43,7 @@
           <Property Name="timeClose" Type="time" Precision="0" />
           <Property Name="averageCheck" Type="nchar" MaxLength="10" />
           <Property Name="isTerrassa" Type="bit" />
+          <Property Name="raiting" Type="float" />
         </EntityType>
         <EntityType Name="restaurants_kitchens">
           <Key>
@@ -297,7 +298,8 @@
           <NavigationProperty Name="SearchTerms" Relationship="Self.FK_searchTerms_restaurants" FromRole="restaurants" ToRole="searchTerms" />
           <NavigationProperty Name="Kitchens" Relationship="Self.restaurants_kitchens" FromRole="restaurants" ToRole="kitchens" />
           <NavigationProperty Name="Users" Relationship="Self.users_restaurants" FromRole="restaurants" ToRole="users" />
-          <Property Name="isTerrassa" Type="Boolean" />
+          <Property Name="IsTerrassa" Type="Boolean" />
+          <Property Name="Raiting" Type="Double" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -446,7 +448,8 @@
           <EntitySetMapping Name="Restaurants1">
             <EntityTypeMapping TypeName="prac32114Model.Restaurant">
               <MappingFragment StoreEntitySet="restaurants">
-                <ScalarProperty Name="isTerrassa" ColumnName="isTerrassa" />
+                <ScalarProperty Name="Raiting" ColumnName="raiting" />
+                <ScalarProperty Name="IsTerrassa" ColumnName="isTerrassa" />
                 <ScalarProperty Name="IdRestaurant" ColumnName="id_restaurant" />
                 <ScalarProperty Name="Name" ColumnName="name" />
                 <ScalarProperty Name="Description" ColumnName="description" />

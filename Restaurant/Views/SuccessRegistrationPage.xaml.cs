@@ -44,7 +44,7 @@ namespace Restaurant.Views
 
             if (Context.Role == "user")
             {
-                return;
+                this.NavigationService.Navigate(new ListUserPage(App.dbContext.Users.Find(Context.Id)));
             }
         }
     }

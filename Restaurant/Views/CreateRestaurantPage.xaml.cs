@@ -47,7 +47,6 @@ namespace RestaurantApp.Views
             if (Yes.IsChecked == true)
             {
                 Yes.IsChecked = false;
-
             }
             else
             {
@@ -61,7 +60,6 @@ namespace RestaurantApp.Views
             if (No.IsChecked == true)
             {
                 No.IsChecked = false;
-
             }
             else
             {
@@ -77,13 +75,11 @@ namespace RestaurantApp.Views
             YesPath.Data = (PathGeometry) TryFindResource("RadioButtonChecked");
             YesPath.Fill = (SolidColorBrush)TryFindResource("SecondColor");
         }
-
         private void Yes_OnUnchecked(object sender, RoutedEventArgs e)
         {
             YesPath.Data = (PathGeometry)TryFindResource("RadioButtonNotChecked");
             YesPath.Fill = (SolidColorBrush)TryFindResource("TextPlaceHolder");
         }
-
         private void No_OnChecked(object sender, RoutedEventArgs e)
         {
             Yes.IsChecked = false;
@@ -91,7 +87,6 @@ namespace RestaurantApp.Views
             NoPath.Data = (PathGeometry)TryFindResource("RadioButtonChecked");
             NoPath.Fill = (SolidColorBrush)TryFindResource("SecondColor");
         }
-
         private void No_OnUnchecked(object sender, RoutedEventArgs e)
         {
             NoPath.Data = (PathGeometry)TryFindResource("RadioButtonNotChecked");
@@ -240,6 +235,7 @@ namespace RestaurantApp.Views
                 !Validation.GetHasError(Kitchen) & Context.CheckCountImage() &!Validation.GetHasError(Phone))
             {
                 Context.SaveChanges();
+                this.NavigationService.GoBack();
             }
             
         }

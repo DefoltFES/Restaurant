@@ -27,25 +27,18 @@ namespace RestaurantApp.Views
         private ListAdminPageViewModel Context { get; set; }
         public ListAdminPage(ListAdminPageViewModel model)
         {
+
             InitializeComponent();
             Context = model;
-           
+            DataContext = Context;
+
         }
 
         private void ListAdminPage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            DataContext = null;
+            Context = new ListAdminPageViewModel(App.dbContext.Users.Find(Context.Id));
             DataContext = Context;
-            if (Context.Restaurants.Count!=0)
-            {
-                HasData.Visibility = Visibility.Visible;
-                NoData.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                HasData.Visibility = Visibility.Collapsed;
-                NoData.Visibility = Visibility.Visible;
-            }
+            CheckList();
         }
 
         private void ExitClick(object sender, RoutedEventArgs e)
@@ -86,10 +79,24 @@ namespace RestaurantApp.Views
                     Context.Restaurants.Remove(restaurant);
                     App.dbContext.Restaurants.Remove(restaurant);
                     App.dbContext.SaveChanges();
+                    CheckList();
                 }
             }
         }
 
+        private void CheckList()
+        {
+            if (Context.Restaurants.Count != 0)
+            {
+                HasData.Visibility = Visibility.Visible;
+                NoData.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                HasData.Visibility = Visibility.Collapsed;
+                NoData.Visibility = Visibility.Visible;
+            }
+        }
         private void DeleteImages(ICollection<Image> images)
         {
             foreach (var item in images)

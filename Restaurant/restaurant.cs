@@ -32,7 +32,8 @@ namespace RestaurantApp
         public Nullable<System.TimeSpan> TimeOpen { get; set; }
         public Nullable<System.TimeSpan> TimeClose { get; set; }
         public string AverageCheck { get; set; }
-        public Nullable<bool> isTerrassa { get; set; }
+        public Nullable<bool> IsTerrassa { get; set; }
+        public Nullable<double> Raiting { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Image> Images { get; set; }

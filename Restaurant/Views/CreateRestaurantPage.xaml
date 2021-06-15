@@ -19,13 +19,20 @@
             <TextBlock Margin="50,0,0,0" FontFamily="{StaticResource Bold}" FontSize="64" Foreground="{StaticResource ContentText}" Text="Заполните данные&#xA;о ресторане"></TextBlock>
             <TextBlock Margin="50,0,0,0" Foreground="{StaticResource TextPlaceHolder}" FontFamily="{StaticResource Regular}" FontSize="20" Text="Пользователи сделают выыбор на основе этих данных"></TextBlock>
             <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
-                <Border x:Name="NameCircle" Margin="0,33,36,0" VerticalAlignment="Top"  Width="15" Height="15" Background="{StaticResource ButtonOutline}" CornerRadius="7.5"></Border>
-                    <Border  VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="87" Width="493" x:Name="BorderName" Margin="0,0,0,0" Padding="22,0,0,0" BorderThickness="1"  BorderBrush="{StaticResource ButtonOutline}" CornerRadius="3.5">
-                        <TextBox x:Name="Name" Validation.Error="Name_OnError"  GotFocus="TextBoxOnGotFocus"   Background="Transparent" FontFamily="{StaticResource Regular}" VerticalAlignment="Center" BorderThickness="0" FontSize="28" Foreground="{StaticResource TextPlaceHolder}">
+                <Border x:Name="NameCircle" Margin="0,33,36,0" VerticalAlignment="Top"  Width="15" Height="15" 
+                        Background="{StaticResource ButtonOutline}" CornerRadius="7.5"></Border>
+                    <Border  VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="87" Width="493" x:Name="BorderName" 
+                             Margin="0" Padding="22,0,0,0" BorderThickness="1"  
+                             BorderBrush="{StaticResource ButtonOutline}" CornerRadius="3.5">
+                        <TextBox x:Name="Name" Validation.Error="Name_OnError"  GotFocus="TextBoxOnGotFocus"   
+                                 Background="Transparent" FontFamily="{StaticResource Regular}" 
+                                 VerticalAlignment="Center" BorderThickness="0" FontSize="28" 
+                                 Foreground="{StaticResource TextPlaceHolder}">
                             <Validation.ErrorTemplate>
                                 <ControlTemplate/>
                             </Validation.ErrorTemplate>
-                            <Binding Path="Name" ValidatesOnExceptions="True" TargetNullValue="Название ресторана"  UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                            <Binding Path="Name" ValidatesOnExceptions="True" TargetNullValue="Название ресторана"  
+                                     UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                                 <Binding.ValidationRules>
                                     <service:FieldRule/>
                                     <ExceptionValidationRule/>
@@ -187,15 +194,24 @@
                     <TextBlock VerticalAlignment="Center" FontSize="30" FontFamily="{StaticResource Regular}" Foreground="{StaticResource TextPlaceHolder}" Text="Средний чек"></TextBlock>
                 </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="45,40,0,0">
-                        <Slider IsSelectionRangeEnabled="True" Width="495"  VerticalAlignment="Center" IsSnapToTickEnabled="True"  TickFrequency="1"  Value="{Binding AverageCheck,TargetNullValue=1}" Minimum="1" Maximum="3" SelectionEnd="{Binding AverageCheck,TargetNullValue=1}"  >
+                        <Slider IsSelectionRangeEnabled="True" Width="495"  VerticalAlignment="Center" IsSnapToTickEnabled="True"  TickFrequency="1"  
+                                Value="{Binding AverageCheck,TargetNullValue=1}" Minimum="1" Maximum="3" 
+                                SelectionEnd="{Binding AverageCheck,TargetNullValue=1}"  >
                         <Slider.Resources>
                             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#4BB9F8" />
                                 <SolidColorBrush x:Key="{x:Static SystemColors.ControlDarkDarkBrushKey}"  Color="#4BB9F8" Opacity="0.4" />
                         </Slider.Resources>
                     </Slider>
-                        <TextBlock x:Name="Rub1" FontFamily="{StaticResource Regular}" Foreground="{Binding AverageCheck, Converter={StaticResource OneRuble},TargetNullValue={StaticResource SecondColor}}" Margin="15,0,0,0" FontSize="27">₽</TextBlock>
-                        <TextBlock x:Name="Rub2" FontFamily="{StaticResource Regular}" Foreground="{Binding AverageCheck,Converter={StaticResource TwoRuble}}" Margin="6,0,0,0" FontSize="27">₽</TextBlock>
-                        <TextBlock x:Name="Rub3" FontFamily="{StaticResource Regular}" Foreground="{Binding AverageCheck,Converter={StaticResource ThreeRuble}}" Margin="6,0,0,0" FontSize="27">₽</TextBlock>
+                        <TextBlock x:Name="Rub1" FontFamily="{StaticResource Regular}" 
+                                   Foreground="{Binding AverageCheck, Converter={StaticResource OneRuble},
+                            TargetNullValue={StaticResource SecondColor}}" 
+                                   Margin="15,0,0,0" FontSize="27">₽</TextBlock>
+                        <TextBlock x:Name="Rub2" FontFamily="{StaticResource Regular}" 
+                                   Foreground="{Binding AverageCheck,Converter={StaticResource TwoRuble}}" 
+                                   Margin="6,0,0,0" FontSize="27">₽</TextBlock>
+                        <TextBlock x:Name="Rub3" FontFamily="{StaticResource Regular}" 
+                                   Foreground="{Binding AverageCheck,Converter={StaticResource ThreeRuble}}" 
+                                   Margin="6,0,0,0" FontSize="27">₽</TextBlock>
                     </StackPanel>
                 </StackPanel>
                 <Border HorizontalAlignment="Left" Width="493" Height="58" Margin="40,50,0,50" CornerRadius="4" Background="{StaticResource SecondColor}">

@@ -60,13 +60,11 @@ namespace RestaurantApp.ViewModel
       
         public void GeneratePassword()
         {
-            
             Random rnd = new Random();
-            int length = rnd.Next(8, 12);
             const string ValidChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@$!%*?&.";
             StringBuilder result = new StringBuilder();
             Random randomChar = new Random();
-            while (!Regex.IsMatch(result.ToString(), @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&.]{8,}"))
+            while (!Regex.IsMatch(result.ToString(), @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&.]{6,}"))
             {
                 result.Append(ValidChar[randomChar.Next(ValidChar.Length)]);
             }

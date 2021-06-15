@@ -8,17 +8,23 @@
       mc:Ignorable="d" 
      
       Title="RegisterFormPage">
-<ScrollViewer>
+<ScrollViewer VerticalScrollBarVisibility="Hidden">
    <StackPanel Margin="0,0,250,0" HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock FontFamily="{StaticResource Bold}" FontSize="64" Foreground="{StaticResource ContentText}" Text="Заполните данные&#xA;о себе"></TextBlock>
         <TextBlock Foreground="{StaticResource TextPlaceHolder}" FontFamily="{StaticResource Regular}" FontSize="20" Text="{Binding Title}"></TextBlock>
        <Border Height="85" x:Name="BorderPhone" Margin="0,33,0,0" Padding="22,0,0,0" BorderThickness="1"  BorderBrush="{StaticResource ButtonOutline}" CornerRadius="3.5">
-            <TextBox x:Name="Phone" Validation.Error="Phone_OnError"   GotFocus="TextBoxOnGotFocus"     Background="Transparent" FontFamily="{StaticResource Regular}" VerticalAlignment="Center" BorderThickness="0" FontSize="28" Foreground="{StaticResource TextPlaceHolder}">
+            <TextBox x:Name="Phone" Validation.Error="Phone_OnError"   GotFocus="TextBoxOnGotFocus"     Background="Transparent" 
+                     FontFamily="{StaticResource Regular}" 
+                     VerticalAlignment="Center" 
+                     BorderThickness="0" FontSize="28" Foreground="{StaticResource TextPlaceHolder}">
                 <Validation.ErrorTemplate>
                     <ControlTemplate></ControlTemplate>
                 </Validation.ErrorTemplate>
                 <TextBox.Text>
-                    <Binding Path="Phone" ValidatesOnExceptions="True" TargetNullValue="Номер телефона"  UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                    <Binding Path="Phone" ValidatesOnExceptions="True" 
+                             TargetNullValue="Номер телефона"  
+                             UpdateSourceTrigger="PropertyChanged" 
+                             NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <service:PhoneNumberRule></service:PhoneNumberRule>
                             <ExceptionValidationRule/>

@@ -29,17 +29,15 @@ namespace RestaurantApp.ViewModel
         {
             SaveFileDialog saveFileDialog=new SaveFileDialog();
             saveFileDialog.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            saveFileDialog.FileName = "Password.txt";
             if (saveFileDialog.ShowDialog() == true)
             {
-                return;
+                System.IO.File.WriteAllText(saveFileDialog.FileName, Password);
             }
             else
             {
-                string filename = saveFileDialog.FileName;
-                System.IO.File.WriteAllText(filename, Password);
+              return;
             }
-          
-            
         }
 
         public void WriteLog()

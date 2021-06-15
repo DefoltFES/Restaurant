@@ -118,7 +118,7 @@ namespace RestaurantApp.Views
 
                     if (Context.Role=="user")
                     {
-                        this.NavigationService.Navigate(new TestPage());
+                        this.NavigationService.Navigate(new ListUserPage(App.dbContext.Users.Find(Context.Id)));
                     }
                 }
                 else

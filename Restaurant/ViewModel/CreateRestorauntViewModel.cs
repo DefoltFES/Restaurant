@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
@@ -80,10 +82,13 @@ namespace RestaurantApp.ViewModel
             get => restaurant.TimeOpen.ToString();
             set
             {
-
-                restaurant.TimeOpen = TimeSpan.ParseExact(value, @"h\:m",
-                    CultureInfo.InvariantCulture);
-                OnPropertyChanged();
+                if (Regex.IsMatch(value, "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"))
+                {
+                    restaurant.TimeOpen = TimeSpan.ParseExact(value, @"h\:m",
+                        CultureInfo.InvariantCulture);
+                    OnPropertyChanged();
+                }
+              
             }
         }
 
@@ -92,8 +97,12 @@ namespace RestaurantApp.ViewModel
             get => restaurant.TimeClose.ToString();
             set
             {
-                restaurant.TimeClose = TimeSpan.ParseExact(value, @"h\:m", CultureInfo.InvariantCulture);
-                OnPropertyChanged();
+                if (Regex.IsMatch(value, "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"))
+                {
+                    restaurant.TimeClose = TimeSpan.ParseExact(value, @"h\:m", CultureInfo.InvariantCulture);
+                    OnPropertyChanged();
+                }
+               
             }
         }
 
@@ -113,10 +122,10 @@ namespace RestaurantApp.ViewModel
 
         public bool? isTerrassa
         {
-            get=>restaurant.isTerrassa;
+            get=>restaurant.IsTerrassa;
             set
             {
-                restaurant.isTerrassa = value;
+                restaurant.IsTerrassa = value;
             }
         }
 
@@ -158,7 +167,7 @@ namespace RestaurantApp.ViewModel
         {
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
-                Filter = "Image File (*.jpg;*.bmp;*.png)|*.jpg;*.bmp;*.png",
+                Filter = "Image File (*.jpg;)|*.jpg;",
                 CheckPathExists = true,
                 Multiselect = true
             };
@@ -183,9 +192,26 @@ namespace RestaurantApp.ViewModel
                 item.ImagePath = CopyAndSaveImages(item.ImagePath);
             }
 
-            App.dbContext.Restaurants.Add(restaurant);
-            user.Restaurants.Add(restaurant);
-            App.dbContext.SaveChanges();
+            if (isEdit == true)
+            {
+                var result = App.dbContext.Restaurants.Where(r => r.IdRestaurant == restaurant.IdRestaurant).FirstOrDefault();
+                if (result != null)
+                {
+                    App.dbContext.Restaurants.Attach(restaurant);
+                    App.dbContext.Entry(restaurant).State = EntityState.Modified;
+                    App.dbContext.SaveChanges();
+                }
+              
+            }
+            else
+            {
+                Random rnd = new Random();
+                restaurant.Raiting = rnd.NextDouble() + rnd.Next(1, 4);
+                App.dbContext.Restaurants.Add(restaurant);
+                user.Restaurants.Add(restaurant);
+                App.dbContext.SaveChanges();
+            }
+          
         }
 
         private void DeleteImages(ICollection<Image> images)
@@ -247,10 +273,19 @@ namespace RestaurantApp.ViewModel
                 {
                     Directory.CreateDirectory(fullDirectoryPath);
                 }
+
+                if (File.Exists(System.AppDomain.CurrentDomain.BaseDirectory + path))
+                {
+                    return path;
+                }
+                else
+                {
                 var nameImage = Path.GetFileName(path);
                 var newImageSource = Path.Combine(fullDirectoryPath, nameImage);
                 File.Copy(path, newImageSource, true);
                 return Path.Combine(@"images\restoraunt\", nameImage);
+            }
+             
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
